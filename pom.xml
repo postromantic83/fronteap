@@ -10,53 +10,104 @@
     <packaging>war</packaging>
     <description>Проект для сборки WAR-ника с фронтом и авторизацией</description>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <build>
+                <finalName>front</finalName>
 
-    <build>
-        <finalName>fronteap</finalName>
+                <plugins>
+                    <!--Очистка фронтового билда-->
+                    <plugin>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <version>2.5</version>
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>src/main/front/dist</directory>
+                                    <includes>
+                                        <include>*</include>
+                                    </includes>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </plugin>
 
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
+                    <!--Генерация фронта-->
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                            </execution>
 
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>install node and yarn</id>
-                        <goals>
-                            <goal>install-node-and-yarn</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                    </execution>
-                    <execution>
-                        <id>yarn install</id>
-                        <goals>
-                            <goal>yarn</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <nodeVersion>v10.13.0</nodeVersion>
-                    <yarnVersion>v1.12.3</yarnVersion>
-                    <!--<npmVersion>v6.4.1</npmVersion>-->
-                    <workingDirectory>src/main/webapp</workingDirectory>
-                </configuration>
-            </plugin>
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                            </execution>
 
+                            <execution>
+                                <id>npm run build</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
 
-
-        </plugins>
-    </build>
+                                <configuration>
+                                    <arguments>run build</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <nodeVersion>v10.13.0</nodeVersion>
+                            <yarnVersion>v1.12.3</yarnVersion>
+                            <workingDirectory>src/main/front</workingDirectory>
+                        </configuration>
+                    </plugin>
 
 
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>3.2.2</version>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/front/dist/front</directory>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>3.2.2</version>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/front/dist/front</directory>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

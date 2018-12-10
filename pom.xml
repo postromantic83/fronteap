@@ -10,6 +10,51 @@
     <packaging>war</packaging>
     <description>Проект для сборки WAR-ника с фронтом и авторизацией</description>
 
+    <repositories>
+        <repository>
+            <id>nexus-dmz</id>
+            <url>http://nexus-xpaas-images-tp.dmz-apps.demo.rht.ru/repository/maven-releases</url>
+        </repository>
+        <repository>
+            <id>kspd-rep</id>
+            <url>http://www.demo.rht.ru/repos/maven/repository/</url>
+        </repository>
+        <repository>
+            <id>red-hat-ga-repository</id>
+            <url>https://maven.repository.redhat.com/ga</url>
+        </repository>
+        <repository>
+            <id>red-hat-early-access-repository</id>
+            <url>https://maven.repository.redhat.com/earlyaccess/all</url>
+        </repository>
+        <repository>
+            <id>jboss-early-access-repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>kspd-plugins</id>
+            <url>http://www.demo.rht.ru/repos/maven/repository/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>red-hat-ga-repository</id>
+            <url>https://maven.repository.redhat.com/ga</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>red-hat-early-access-repository</id>
+            <url>https://maven.repository.redhat.com/earlyaccess/all</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>jboss-early-access-repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>nexus-dmz</id>
+            <url>http://nexus-xpaas-images-tp.dmz-apps.demo.rht.ru/repository/maven-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <profiles>
         <profile>
             <id>local</id>

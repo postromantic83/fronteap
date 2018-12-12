@@ -5,8 +5,8 @@ import {AppComponent} from './app.component';
 import {
   AccordionModule,
   ButtonModule,
-  CalendarModule,
-  DropdownModule,
+  CalendarModule, CheckboxModule, DialogModule,
+  DropdownModule, GMapModule,
   InputSwitchModule, PaginatorModule,
   PanelModule,
   TabViewModule
@@ -39,7 +39,9 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     AccordionModule,
+    CheckboxModule,
     PaginatorModule,
+    DialogModule,
     TableModule,
     TabViewModule,
     HttpClientModule,
@@ -48,6 +50,7 @@ const routes: Routes = [
     PanelModule,
     FormsModule,
     ButtonModule,
+    GMapModule,
     DropdownModule,
     RouterModule.forRoot(routes)
   ],

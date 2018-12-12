@@ -4,22 +4,32 @@ import {Injectable} from "@angular/core";
 import {AzsList} from "../model/azs-list.model";
 import {Observable, pipe, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
+import {AzsDetailedList} from "../model/azs-detailed-list.model";
+import {AzsDetails} from "../model/azs-details.model";
 @Injectable()
 export class CrmService {
     constructor(private http: HttpClient) { }
     private serviceURL = environment.crmUrl;
-    private scoutGasStationListURL = this.serviceURL + '/crm/mock/fltGasStationsList';
-    private scoutGasStationDetailedListURL = this.serviceURL + '/crm/mock/fltGasStationsDetailedList';
+    private crmGasStationListURL = this.serviceURL + '/crm/mock/fltGasStationsList';
+    private crmtGasStationDetailedListURL = this.serviceURL + '/crm/mock/fltGasStationsDetailedList';
+    private crmGasStationDetails = this.serviceURL + '/crm/mock/fltGasStationDetails';
 
     /**
      * Получение списка АЗС.
      */
     public postfltGasStationsList (body: string): Observable<AzsList> {
-        console.log('URL: ' + 'http://' + this.scoutGasStationListURL);
-        return this.http.post<AzsList>('http://' + this.scoutGasStationListURL, body);
+        return this.http.post<AzsList>(this.crmGasStationListURL, body);
             // .pipe(
             //     this.handleError(new HttpErrorResponse(body))
             // );
+    }
+
+    public postfltGasStationsDetailedList (body: string): Observable<AzsDetailedList> {
+        return this.http.post<AzsDetailedList>(this.crmtGasStationDetailedListURL, body);
+    }
+
+    public postDetails(body: string): Observable<AzsDetails> {
+        return this.http.post<AzsDetails>(this.crmGasStationDetails, body);
     }
 
     //TODO сделать обработку ошибок.

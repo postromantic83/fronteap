@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  scoutUrl: 'localhost:8090',
-  crmUrl: 'localhost:8085'
+  scoutUrl: 'http://localhost:8090',
+  crmUrl: 'http://localhost:8085'
 };
 
 /*

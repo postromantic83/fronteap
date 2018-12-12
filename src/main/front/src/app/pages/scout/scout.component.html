@@ -1,111 +1,122 @@
 <div class="container-fluid align-self-end">
-  <p-panel header="Получение статистики">
-    <p-tabView>
-      <p-tabPanel header="топливо">
+    <p-panel header="Получение статистики из системы СКАУТ">
+        <p-tabView>
+            <p-tabPanel header="топливо">
 
-        <app-unit-picker (selChanged)="selectorChanged($event)"></app-unit-picker>
-        <div class="form-group container">
-          <div class="row">
-            <label class="control-label col-sm-2">По дням</label>
-            <p-inputSwitch (onChange)="handleFuelDaylyChange($event)"
-                           [(ngModel)]="daylyFuelChecked"
-                           class="col-sm-2"
-                           styleClass="padding-left: 20px">По дням
-            </p-inputSwitch>
-          </div>
+                <app-unit-picker (selChanged)="selectorChanged($event)"></app-unit-picker>
+                <div class="form-group container">
+                    <div class="row">
+                        <label class="control-label col-sm-2">По дням</label>
+                        <p-inputSwitch (onChange)="handleFuelDaylyChange($event)"
+                                       [(ngModel)]="daylyFuelChecked"
+                                       class="col-sm-2"
+                                       styleClass="padding-left: 20px">По дням
+                        </p-inputSwitch>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <p-button (onClick)="fuel($event)"
-                      class="col-sm-2"
-                      label="Топливо"
-                      style="padding-left: 20px"
-                      styleClass="ui-button-success"></p-button>
-          </div>
-        </div>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <p-button (onClick)="fuel($event)"
+                                  class="col-sm-2"
+                                  label="Топливо"
+                                  style="padding-left: 20px"
+                                  styleClass="ui-button-success"></p-button>
+                    </div>
+                </div>
 
-        <h5 *ngIf="fuelStatistic">Ответ по топливу:</h5>
-        <br>
-
-
-        <table *ngIf="fuelStatistic" class="table table-bordered">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col-sm-4">Дата</th>
-            <th scope="col-sm-4">Количество</th>
-            <th scope="col-sm-4">Примечание</th>
-          </tr>
-          </thead>
-          <tbody *ngFor="let interval of fuelStatistic?.intervals">
-          <tr>
-            <td>{{interval.begin | date:'dd/MM/yy'}} - {{interval.end | date:'dd/MM/yy'}} </td>
-            <td>{{interval.beginFuel.value}}</td>
-            <td>{{interval.beginFuel.noValueReason}}</td>
-          </tr>
-          </tbody>
-        </table>
-        <img class="img-fluid" id="scheme1" src="assets/images/sheme1.png">
+                <h5 *ngIf="fuelStatistic">Ответ по топливу:</h5>
+                <br>
 
 
-      </p-tabPanel>
-      <p-tabPanel header="одометр">
-        <app-unit-picker (selChanged)="selectorChanged($event)"></app-unit-picker>
+                <table *ngIf="fuelStatistic" class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col-sm-4">Дата</th>
+                        <th scope="col-sm-4">Количество</th>
+                        <th scope="col-sm-4">Примечание</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let interval of fuelStatistic?.intervals">
+                    <tr>
+                        <td>{{interval.begin | date:'dd/MM/yy'}} - {{interval.end | date:'dd/MM/yy'}} </td>
+                        <td>{{interval.beginFuel.value}}</td>
+                        <td>{{interval.beginFuel.noValueReason}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p-accordion>
+                    <p-accordionTab header="Диаграмма последовательности для отчета по топливу">
+                        <img class="img-fluid" id="scheme_infr" src="assets/images/fuel_scheme.png">
+                    </p-accordionTab>
+                </p-accordion>
 
-        <div class="form-group container">
-          <label class="control-label col-sm-2">По дням</label>
-          <p-inputSwitch
-            (onChange)="handleOdoDaylyChange($event)"
-            [(ngModel)]="daylyOdoChecked"
-            class="col-sm-2"
-            styleClass="padding-left: 20px">По дням
-          </p-inputSwitch>
+            </p-tabPanel>
+            <p-tabPanel header="одометр">
+                <app-unit-picker (selChanged)="selectorChanged($event)"></app-unit-picker>
 
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <p-button (onClick)="odometer($event)"
-                      label="Одометр"
-                      class="col-sm-2"
-                      style="padding-left: 20px"
-                      styleClass="ui-button-success"></p-button>
-          </div>
-        </div>
+                <div class="form-group container">
+                    <label class="control-label col-sm-2">По дням</label>
+                    <p-inputSwitch
+                            (onChange)="handleOdoDaylyChange($event)"
+                            [(ngModel)]="daylyOdoChecked"
+                            class="col-sm-2"
+                            styleClass="padding-left: 20px">По дням
+                    </p-inputSwitch>
 
-        <h5 *ngIf="odoStatistic">Показания по одометру:</h5>
-        <br>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <p-button (onClick)="odometer($event)"
+                                  class="col-sm-2"
+                                  label="Одометр"
+                                  style="padding-left: 20px"
+                                  styleClass="ui-button-success"></p-button>
+                    </div>
+                </div>
+
+                <h5 *ngIf="odoStatistic">Показания по одометру:</h5>
+                <br>
 
 
-        <table *ngIf="odoStatistic" class="table table-bordered">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col-sm-4">Дата</th>
-            <th scope="col-sm-4">Показанания начало</th>
-            <th scope="col-sm-4">Показанания конец</th>
-            <th scope="col-sm-4">Итоговое показание</th>
-            <th scope="col-sm-4">Примечание</th>
-          </tr>
-          </thead>
-          <tbody *ngFor="let odointerv of odoStatistic?.intervals">
-          <tr>
-            <td>{{odointerv.begin | date:'dd/MM/yy'}} - {{odointerv.end | date:'dd/MM/yy'}} </td>
-            <td>{{odointerv.beginMileageKm.value}}</td>
-            <td>{{odointerv.endMileageKm.value}}</td>
-            <td>{{odointerv.totalMileageKm.value}}</td>
-            <td>{{odointerv.totalMileageKm.noValueReason}} {{odointerv.beginMileageKm.noValueReason}}
-              {{odointerv.totalMileageKm.noValueReason}}</td>
-            <!--<td>{{odointerv.}}</td>-->
-          </tr>
-          </tbody>
-        </table>
-        <img class="img-fluid" id="scheme2" src="assets/images/sh_odometer.png">
-      </p-tabPanel>
-      <p-tabPanel header="Swagger">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item"
-                  src="http://localhost:8090/webjars/swagger-ui/index.html?url=http://localhost:8090/scout/api-doc"></iframe>
-        </div>
-      </p-tabPanel>
-    </p-tabView>
-  </p-panel>
+                <table *ngIf="odoStatistic" class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col-sm-4">Дата</th>
+                        <th scope="col-sm-4">Показанания начало</th>
+                        <th scope="col-sm-4">Показанания конец</th>
+                        <th scope="col-sm-4">Итоговое показание</th>
+                        <th scope="col-sm-4">Примечание</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let odointerv of odoStatistic?.intervals">
+                    <tr>
+                        <td>{{odointerv.begin | date:'dd/MM/yy'}} - {{odointerv.end | date:'dd/MM/yy'}} </td>
+                        <td>{{odointerv.beginMileageKm.value}}</td>
+                        <td>{{odointerv.endMileageKm.value}}</td>
+                        <td>{{odointerv.totalMileageKm.value}}</td>
+                        <td>{{odointerv.totalMileageKm.noValueReason}} {{odointerv.beginMileageKm.noValueReason}}
+                            {{odointerv.totalMileageKm.noValueReason}}</td>
+                        <!--<td>{{odointerv.}}</td>-->
+                    </tr>
+                    </tbody>
+                </table>
+                <p-accordion>
+                    <p-accordionTab header="Диаграмма последовательности для отчета по топливу">
+                <img class="img-fluid" id="scheme2" src="assets/images/odo_scheme.png">
+                    </p-accordionTab>
+                </p-accordion>
+            </p-tabPanel>
+            <p-tabPanel header="Swagger">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                            src="http://localhost:8090/webjars/swagger-ui/index.html?url=http://localhost:8090/scout/api-doc"></iframe>
+                </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="Инфраструктура">
+                <img class="img-fluid" id="scheme1" src="assets/images/infr_scheme.png">
+            </p-tabPanel>
+        </p-tabView>
+    </p-panel>
 </div>
 
 

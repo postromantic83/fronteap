@@ -2,7 +2,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {ButtonModule, CalendarModule, DropdownModule, InputSwitchModule, PanelModule, TabViewModule} from 'primeng/primeng';
+import {
+  AccordionModule,
+  ButtonModule,
+  CalendarModule,
+  DropdownModule,
+  InputSwitchModule, PaginatorModule,
+  PanelModule,
+  TabViewModule
+} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {ScoutService} from './services/scout.service';
@@ -12,6 +20,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {CrmComponent} from './pages/crm/crm.component';
 import {ScoutComponent} from './pages/scout/scout.component';
 import {UnitPickerComponent} from './pages/scout/unit-picker.component';
+import {CrmService} from "./services/crm.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/scout', pathMatch: 'full'},
@@ -29,6 +38,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AccordionModule,
+    PaginatorModule,
     TableModule,
     TabViewModule,
     HttpClientModule,
@@ -41,7 +52,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  providers: [ScoutService],
+  providers: [ScoutService, CrmService],
   bootstrap: [AppComponent]
 })
 

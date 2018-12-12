@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {Unit} from '../model/unit.model';
 import {FuelStatistic} from '../model/fuelstatistic.model';
 import {OdoStatistic} from '../model/odo_statistic.model';
+import {environment} from "../../environments/environment";
 
 /**
  * Сервис для обращения к шине данныех.
@@ -11,9 +12,10 @@ import {OdoStatistic} from '../model/odo_statistic.model';
 @Injectable()
 export class ScoutService {
   constructor(private http: HttpClient) { }
-  private scoutIdsURL = 'http://localhost:8090/scout/api/units/availableIds';
-  private scoutFuelURL = 'http://localhost:8090/scout/statistics/fuel?';
-  private scoutOdoURL = 'http://localhost:8090/scout/statistics/odometer?';
+  private serviceURL = environment.scoutUrl;
+  private scoutIdsURL = this.serviceURL + '/scout/api/units/availableIds';
+  private scoutFuelURL = this.serviceURL + '/scout/statistics/fuel?';
+  private scoutOdoURL = this.serviceURL + '/scout/statistics/odometer?';
 
   /**
    * Получение списка техники.
@@ -30,6 +32,7 @@ export class ScoutService {
    * @param dayly - тип отчета по дням
    */
   public getFuel(unit: Unit, startDate: Date, endDate: Date, dayly: boolean): Observable<FuelStatistic> {
+    console.log('ENV VALUE: ' + this.serviceURL);
     console.log('Date To String:' + startDate.getFullYear() + '%2F' + startDate.getMonth() + '%2F' + startDate.getDate() + ' 00:00:00');
     return this.http.get<FuelStatistic>(this.scoutFuelURL +
       this.requestHelper(unit, startDate, endDate, dayly));

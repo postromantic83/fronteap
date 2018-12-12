@@ -29,23 +29,23 @@ export class ScoutComponent implements OnInit {
   ngOnInit(): void {
     console.log('Initialization');
   }
-  handleClick() {
-    console.log('БУТОНЕД!');
-    // let unitList: Unit[];
-    // let arrayUnits: ConcatArray<Unit>;
-    this.scoutService.getUnits().subscribe(
-      (response: number[]) => {
-        response.forEach(function(value) {
-          let currentUnit: Unit;
-          currentUnit = new Unit(value);
-          // arrayUnits.(currentUnit);
-          console.log('Pushed: ' + value);
-          // console.log('Pushed: ' + this.units);
-        });
-      },
-      error => console.log(error)
-    );
-  }
+  // handleClick() {
+  //   console.log('БУТОНЕД!');
+  //   // let unitList: Unit[];
+  //   // let arrayUnits: ConcatArray<Unit>;
+  //   this.scoutService.getUnits().subscribe(
+  //     (response: number[]) => {
+  //       response.forEach(function(value) {
+  //         let currentUnit: Unit;
+  //         currentUnit = new Unit(value);
+  //         // arrayUnits.(currentUnit);
+  //         console.log('Pushed: ' + value);
+  //         // console.log('Pushed: ' + this.units);
+  //       });
+  //     },
+  //     error => console.log(error)
+  //   );
+  // }
   fuel() {
     console.log('Получение топлива');
     this.scoutService.getFuel(this.selectedUnit, this.startDate, this.endDate, this.daylyFuelChecked).subscribe(

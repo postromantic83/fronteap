@@ -12,9 +12,9 @@ import {AzsDetailsRequest} from "../model/azs-details-request.model";
 export class CrmService {
     constructor(private http: HttpClient) { }
     private serviceURL = environment.crmUrl;
-    private crmGasStationListURL = this.serviceURL + '/crm/mock/fltGasStationsList';
-    private crmtGasStationDetailedListURL = this.serviceURL + '/crm/mock/fltGasStationsDetailedList';
-    private crmGasStationDetails = this.serviceURL + '/crm/mock/fltGasStationDetails';
+    private crmGasStationListURL = this.serviceURL + '/crm/fltGasStationsList';
+    private crmtGasStationDetailedListURL = this.serviceURL + '/crm/fltGasStationsDetailedList';
+    private crmGasStationDetails = this.serviceURL + '/crm/fltGasStationDetails';
 
     /**
      * Получение списка АЗС.

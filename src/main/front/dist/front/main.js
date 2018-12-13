@@ -568,9 +568,9 @@ var CrmService = /** @class */ (function () {
     function CrmService(http) {
         this.http = http;
         this.serviceURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].crmUrl;
-        this.crmGasStationListURL = this.serviceURL + '/crm/mock/fltGasStationsList';
-        this.crmtGasStationDetailedListURL = this.serviceURL + '/crm/mock/fltGasStationsDetailedList';
-        this.crmGasStationDetails = this.serviceURL + '/crm/mock/fltGasStationDetails';
+        this.crmGasStationListURL = this.serviceURL + '/crm/fltGasStationsList';
+        this.crmtGasStationDetailedListURL = this.serviceURL + '/crm/fltGasStationsDetailedList';
+        this.crmGasStationDetails = this.serviceURL + '/crm/fltGasStationDetails';
     }
     /**
      * Получение списка АЗС.
@@ -708,8 +708,10 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    scoutUrl: 'http://localhost:8090',
-    crmUrl: 'http://localhost:8085'
+    scoutUrl: 'http://scoutintegration-scoutintegration.kspd-apps.demo.rht.ru',
+    crmUrl: 'http://crmintegration-crmintegration.kspd-apps.demo.rht.ru'
+    // scoutUrl: 'http://localhost:8090',
+    // crmUrl: 'http://localhost:8085'
 };
 /*
  * For easier debugging in development mode, you can import the following file

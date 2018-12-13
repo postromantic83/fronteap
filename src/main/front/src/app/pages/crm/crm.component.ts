@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ScoutService} from "../../services/scout.service";
 import {CrmService} from "../../services/crm.service";
-import {FuelStatistic} from "../../model/fuelstatistic.model";
 import {AzsList} from "../../model/azs-list.model";
 import {AzsDetailedList} from "../../model/azs-detailed-list.model";
 import {AzsDetails} from "../../model/azs-details.model";
@@ -19,6 +17,9 @@ export class CrmComponent implements OnInit{
   public azsDialogVisible: boolean;
   public gMapDialogVisible: boolean;
   public overlays: any[];
+  public fuelCardsAvailable: boolean = false;
+  public loyalCardsAvailable: boolean = false;
+  public bankCardsAvailable: boolean = false;
   options: any;
   constructor (private crmService: CrmService) {  }
   ngOnInit(): void {
@@ -50,6 +51,9 @@ export class CrmComponent implements OnInit{
     this.crmService.postDetails('мамба-хуямба!').subscribe(
         (azsDetailsResponse: AzsDetails) => {
           this.azsDetails = azsDetailsResponse;
+          this.fuelCardsAvailable = this.y2True(this.azsDetails.data.FLTCards);
+          this.loyalCardsAvailable =  this.y2True(this.azsDetails.data.LTYCards);
+          this.bankCardsAvailable =  this.y2True(this.azsDetails.data.GPBCards);
         },
         error => {
           console.log('факеншит!');
@@ -61,9 +65,8 @@ export class CrmComponent implements OnInit{
     console.log('ROW SELECTED! ' + event.data.ID);
   }
   onRowButton(data: any) {
-    this.azsDialogVisible = true;
-    console.log('AZS SELECTED! ' + data.ID);
     this.details();
+    this.azsDialogVisible = true;
   }
   onRowButtonMap(data: any) {
     this.gMapDialogVisible = true;
@@ -77,17 +80,13 @@ export class CrmComponent implements OnInit{
       center: {lat: laty, lng: longti},
       zoom: 20};
     this.overlays = [
-      new google.maps.Marker({position: {lat: laty, lng: longti}, title:"Газпромнефть"}),
+      // new google.maps.Marker({position: {lat: laty, lng: longti}, title:"Газпромнефть"}),
     ];
   }
-  fuelCards(): boolean {
-    console.log('TRU!');
-    if(this.azsDetails) {
-      if(this.azsDetails.data.FLTCards === 'Y') {
-        return true;
-      }
+  private y2True(value: string): boolean {
+    if (value === 'Y') {
+      return true;
     }
-    console.log('FALSE!');
     return false;
   }
 }

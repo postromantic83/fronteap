@@ -1,6 +1,8 @@
-<H1>Уже почти сейчас!</H1>
+<!--<H1>Уже почти сейчас!</H1>-->
 
-
+<p-panel header="Получение данных из CRM Siebel">
+    <p-tabView>
+        <p-tabPanel header="АЗС">
 <p-button (onClick)="stationList($event)"
           class="col-sm-2"
           label="Список АЗС"
@@ -13,11 +15,11 @@
           style="padding-left: 20px"
           styleClass="ui-button-success"></p-button>
 
-<p-button (onClick)="details($event)"
-          class="col-sm-2"
-          label="Получение деталей"
-          style="padding-left: 20px"
-          styleClass="ui-button-success"></p-button>
+<!--<p-button (onClick)="details($event)"-->
+          <!--class="col-sm-2"-->
+          <!--label="Получение деталей"-->
+          <!--style="padding-left: 20px"-->
+          <!--styleClass="ui-button-success"></p-button>-->
 
 <p-table [value]="azsList?.data"
          [paginator]="true" [rows]="5"
@@ -74,16 +76,12 @@
         <tr>
             <td>ID WAY4</td>
             <td>{{azsDetails.data.ID}}</td>
-        </tr>
-        <tr>
             <td>ID Siebel</td>
             <td>{{azsDetails.data.SiebelID}}</td>
         </tr>
         <tr>
             <td>Номер АЗС</td>
             <td>{{azsDetails.data.GasStationNum}}</td>
-        </tr>
-        <tr>
             <td>Наименование</td>
             <td>{{azsDetails.data.Name}}</td>
         </tr>
@@ -94,24 +92,18 @@
         <tr>
             <td>Дата открытия</td>
             <td>{{azsDetails.data.OpenDate}}</td>
-        </tr>
-        <tr>
             <td>Дата закрытия</td>
             <td>{{azsDetails.data.CloseDate}}</td>
         </tr>
         <tr>
             <td>Статус</td>
             <td>{{azsDetails.data.Status}}</td>
-        </tr>
-        <tr>
             <td>Тип принадлежности</td>
             <td>{{azsDetails.data.OwnType}}</td>
         </tr>
         <tr>
             <td>Партнер</td>
             <td>{{azsDetails.data.Partner}}</td>
-        </tr>
-        <tr>
             <td>Тип местоположения</td>
             <td>{{azsDetails.data.LocationType}}</td>
         </tr>
@@ -133,12 +125,10 @@
             <td>{{azsDetails.data.Fax}}</td>
         </tr>
         <tr>
-            <td>Тип АЗС</td>
-            <td>{{azsDetails.data.AddInfo03}}</td>
-        </tr>
-        <tr>
             <td>Принадлежность АЗС</td>
             <td>{{azsDetails.data.ITSCGSBelongsTo}}</td>
+            <td>Тип АЗС</td>
+            <td>{{azsDetails.data.AddInfo03}}</td>
         </tr>
         <tr>
             <td>Отделение ГПН</td>
@@ -150,8 +140,20 @@
     <p-checkbox
                 label="Приём топливных карт"
                 disabled="true"
-                value="fuelCards()"></p-checkbox>
+                [(ngModel)]="fuelCardsAvailable"
+                binary="true"></p-checkbox>
+    <p-checkbox
+            label="Приём карт лояльности"
+            disabled="true"
+            [(ngModel)]="loyalCardsAvailable"
+            binary="true"></p-checkbox>
+    <p-checkbox
+            label="Приём банковских карт"
+            disabled="true"
+            [(ngModel)]="bankCardsAvailable"
+            binary="true"></p-checkbox>
 
+    <label class="control-label col-sm-2">Трассы: {{azsDetails.data.}}</label>
 </p-dialog>
 
 
@@ -161,7 +163,10 @@
     <p-gmap [options]="options"
             [style]="{'width':'640px','height':'640px'}"
             [overlays]="overlays"></p-gmap>
+</p-dialog>
 
-
+        </p-tabPanel>
+    </p-tabView>
+</p-panel>
 
 

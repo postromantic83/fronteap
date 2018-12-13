@@ -6,6 +6,8 @@ import {Observable, pipe, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {AzsDetailedList} from "../model/azs-detailed-list.model";
 import {AzsDetails} from "../model/azs-details.model";
+import {FltGasStationsListRequest} from "../model/FltGasStationsListRequest.model";
+import {AzsDetailsRequest} from "../model/azs-details-request.model";
 @Injectable()
 export class CrmService {
     constructor(private http: HttpClient) { }
@@ -17,7 +19,7 @@ export class CrmService {
     /**
      * Получение списка АЗС.
      */
-    public postfltGasStationsList (body: string): Observable<AzsList> {
+    public postfltGasStationsList (body: FltGasStationsListRequest): Observable<AzsList> {
         return this.http.post<AzsList>(this.crmGasStationListURL, body);
             // .pipe(
             //     this.handleError(new HttpErrorResponse(body))
@@ -28,7 +30,7 @@ export class CrmService {
         return this.http.post<AzsDetailedList>(this.crmtGasStationDetailedListURL, body);
     }
 
-    public postDetails(body: string): Observable<AzsDetails> {
+    public azsDetails(body: AzsDetailsRequest): Observable<AzsDetails> {
         return this.http.post<AzsDetails>(this.crmGasStationDetails, body);
     }
 

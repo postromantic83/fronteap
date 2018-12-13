@@ -3,168 +3,285 @@
 <p-panel header="Получение данных из CRM Siebel">
     <p-tabView>
         <p-tabPanel header="АЗС">
-<p-button (onClick)="stationList($event)"
-          class="col-sm-2"
-          label="Список АЗС"
-          style="padding-left: 20px"
-          styleClass="ui-button-success"></p-button>
 
-<p-button (onClick)="stationDetailsList($event)"
-          class="col-sm-2"
-          label="Детальный список АЗС"
-          style="padding-left: 20px"
-          styleClass="ui-button-success"></p-button>
 
-<!--<p-button (onClick)="details($event)"-->
-          <!--class="col-sm-2"-->
-          <!--label="Получение деталей"-->
-          <!--style="padding-left: 20px"-->
-          <!--styleClass="ui-button-success"></p-button>-->
+            <div class="form-group container">
 
-<p-table [value]="azsList?.data"
-         [paginator]="true" [rows]="5"
-         [rowsPerPageOptions]="[5,10,20,50]"
-         [responsive]="true"
-         selectionMode="single"
-         [(selection)]="selectedAzs"
-         (onRowSelect)="onRowSelect($event)"
-         dataKey="ID"
->
-    <ng-template pTemplate="header">
-        <tr>
-            <th scope="col-sm">ID</th>
-            <th scope="col-sm">ContractName</th>
-            <th scope="col-sm">ContractNumber</th>
-            <th scope="col-sm">RegionCode</th>
-            <th scope="col-sm">AddInfo03</th>
-            <th scope="col-sm">TrCountry</th>
-            <th scope="col-sm">FLTCards</th>
-            <th scope="col-sm">LTYCards</th>
-            <th scope="col-sm">GPBCards</th>
-            <th scope="col-sm">Region</th>
-            <th scope="col-sm">Детально</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-dt let-rowIndex="ID">
-        <tr [pSelectableRow]="dt">
-            <td>{{dt.ID}} </td>
-            <td>{{dt.ContractName}}</td>
-            <td>{{dt.ContractNumber}}</td>
-            <td>{{dt.RegionCode}}</td>
-            <td>{{dt.AddInfo03}}</td>
-            <td>{{dt.TrCountry}}</td>
-            <td>{{dt.FLTCards}}</td>
-            <td>{{dt.LTYCards}}</td>
-            <td>{{dt.GPBCards}}</td>
-            <td>{{dt.Region}}</td>
-            <td>
                 <div class="row">
-                    <p-button style="padding-left: 10px" icon="pi pi-question" (onClick)="onRowButton(dt)"></p-button>
-                    <p-button style="padding-left: 10px" icon="pi pi-search" (onClick)="onRowButtonMap(dt)"></p-button>
+                    <label class="control-label col-sm-2">Дата последнего изменения</label>
+                    <div class="col-sm-2">
+                        <p-calendar [(ngModel)]="dateLastChange"
+                                    required="true" dateFormat="dd.mm.yy"></p-calendar>
+                    </div>
                 </div>
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
 
-<p-dialog header="Детальная информация по АЗС"
-          [(visible)]="azsDialogVisible"
-          positionTop="50">
+                <div class="row ">
+                    <div class="col-sm-2"></div>
+                    <p-checkbox
+                            class="col-sm-4"
+                            [(ngModel)]="fuelCardsFilterSelect"
+                            binary="true"
+                            label="Приём топливных карт"></p-checkbox>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <p-checkbox
+                            class="col-sm-4"
+                            [(ngModel)]="loyalCardsFilterSelect"
+                            binary="true"
+                            label="Приём карт лояльности"></p-checkbox>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <p-checkbox
+                            class="col-sm-4"
+                            [(ngModel)]="bankCardsFilterSelect"
+                            binary="true"
+                            label="Приём банковских карт"></p-checkbox>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <p-button (onClick)="stationList($event)"
+                              class="col-sm-2"
+                              label="Список АЗС"
+                              style="padding-left: 20px"
+                              styleClass="ui-button-success"></p-button>
+                </div>
+            </div>
 
-    <table *ngIf="azsDetails" class="table">
-        <tbody>
-        <tr>
-            <td>ID WAY4</td>
-            <td>{{azsDetails.data.ID}}</td>
-            <td>ID Siebel</td>
-            <td>{{azsDetails.data.SiebelID}}</td>
-        </tr>
-        <tr>
-            <td>Номер АЗС</td>
-            <td>{{azsDetails.data.GasStationNum}}</td>
-            <td>Наименование</td>
-            <td>{{azsDetails.data.Name}}</td>
-        </tr>
-        <tr>
-            <td>Брэнд</td>
-            <td>{{azsDetails.data.Brand}}</td>
-        </tr>
-        <tr>
-            <td>Дата открытия</td>
-            <td>{{azsDetails.data.OpenDate}}</td>
-            <td>Дата закрытия</td>
-            <td>{{azsDetails.data.CloseDate}}</td>
-        </tr>
-        <tr>
-            <td>Статус</td>
-            <td>{{azsDetails.data.Status}}</td>
-            <td>Тип принадлежности</td>
-            <td>{{azsDetails.data.OwnType}}</td>
-        </tr>
-        <tr>
-            <td>Партнер</td>
-            <td>{{azsDetails.data.Partner}}</td>
-            <td>Тип местоположения</td>
-            <td>{{azsDetails.data.LocationType}}</td>
-        </tr>
-        <tr>
-            <td>Широта</td>
-            <td>{{azsDetails.data.Latitude}}</td>
-            <td>Долгота</td>
-            <td>{{azsDetails.data.Longitude}}</td>
-        </tr>
-        <tr>
-            <td>Адрес</td>
-            <td>{{azsDetails.data.Country}}, {{azsDetails.data.Region}}, {{azsDetails.data.City}},
-                {{azsDetails.data.Street}}, {{azsDetails.data.House}}, {{azsDetails.data.Building}}</td>
-        </tr>
-        <tr>
-            <td>Телефон</td>
-            <td>{{azsDetails.data.Phone}}</td>
-            <td>Факс</td>
-            <td>{{azsDetails.data.Fax}}</td>
-        </tr>
-        <tr>
-            <td>Принадлежность АЗС</td>
-            <td>{{azsDetails.data.ITSCGSBelongsTo}}</td>
-            <td>Тип АЗС</td>
-            <td>{{azsDetails.data.AddInfo03}}</td>
-        </tr>
-        <tr>
-            <td>Отделение ГПН</td>
-            <td>{{azsDetails.data.ITSCSecessionGPN}}</td>
-        </tr>
-        </tbody>
-    </table>
+            <!--<p-button (onClick)="stationDetailsList($event)"-->
+                      <!--class="col-sm-2"-->
+                      <!--label="Детальный список АЗС"-->
+                      <!--style="padding-left: 20px"-->
+                      <!--styleClass="ui-button-success"></p-button>-->
 
-    <p-checkbox
-                label="Приём топливных карт"
-                disabled="true"
-                [(ngModel)]="fuelCardsAvailable"
-                binary="true"></p-checkbox>
-    <p-checkbox
-            label="Приём карт лояльности"
-            disabled="true"
-            [(ngModel)]="loyalCardsAvailable"
-            binary="true"></p-checkbox>
-    <p-checkbox
-            label="Приём банковских карт"
-            disabled="true"
-            [(ngModel)]="bankCardsAvailable"
-            binary="true"></p-checkbox>
+            <!--<p-button (onClick)="details($event)"-->
+            <!--class="col-sm-2"-->
+            <!--label="Получение деталей"-->
+            <!--style="padding-left: 20px"-->
+            <!--styleClass="ui-button-success"></p-button>-->
 
-    <label class="control-label col-sm-2">Трассы: {{azsDetails.data.}}</label>
-</p-dialog>
+            <p-table (onRowSelect)="onRowSelect($event)"
+                     [(selection)]="selectedAzs" [paginator]="true"
+                     [responsive]="true"
+                     [rowsPerPageOptions]="[5,10,20,50]"
+                     [rows]="5"
+                     [value]="azsList?.data"
+                     dataKey="ID"
+                     selectionMode="single"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th scope="col-sm">ID</th>
+                        <th scope="col-sm">ContractName</th>
+                        <th scope="col-sm">ContractNumber</th>
+                        <th scope="col-sm">RegionCode</th>
+                        <th scope="col-sm">AddInfo03</th>
+                        <th scope="col-sm">TrCountry</th>
+                        <th scope="col-sm">FLTCards</th>
+                        <th scope="col-sm">LTYCards</th>
+                        <th scope="col-sm">GPBCards</th>
+                        <th scope="col-sm">Region</th>
+                        <th scope="col-sm">Детально</th>
+                    </tr>
+                </ng-template>
+                <ng-template let-dt let-rowIndex="ID" pTemplate="body">
+                    <tr [pSelectableRow]="dt">
+                        <td>{{dt.ID}} </td>
+                        <td>{{dt.ContractName}}</td>
+                        <td>{{dt.ContractNumber}}</td>
+                        <td>{{dt.RegionCode}}</td>
+                        <td>{{dt.AddInfo03}}</td>
+                        <td>{{dt.TrCountry}}</td>
+                        <td>{{dt.FLTCards}}</td>
+                        <td>{{dt.LTYCards}}</td>
+                        <td>{{dt.GPBCards}}</td>
+                        <td>{{dt.Region}}</td>
+                        <td>
+                            <div class="row">
+                                <p-button (onClick)="onRowButton(dt)" icon="pi pi-question"
+                                          style="padding-left: 10px"></p-button>
+                                <p-button (onClick)="onRowButtonMap(dt)" icon="pi pi-search"
+                                          style="padding-left: 10px"></p-button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <p-dialog [(visible)]="azsDialogVisible"
+                      [width]="1200"
+                      header="Детальная информация по АЗС"
+                      positionLeft="300"
+                      positionTop="50"
+            >
+
+                <p-accordion>
+                    <p-accordionTab [selected]="true" header="Основные данные">
+
+                        <table *ngIf="azsDetails" class="table">
+                            <tbody>
+                            <tr>
+                                <td>ID WAY4</td>
+                                <td>{{azsDetails.data.ID}}</td>
+                                <td>ID Siebel</td>
+                                <td>{{azsDetails.data.SiebelID}}</td>
+                            </tr>
+                            <tr>
+                                <td>Номер АЗС</td>
+                                <td>{{azsDetails.data.GasStationNum}}</td>
+                                <td>Наименование</td>
+                                <td>{{azsDetails.data.Name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Брэнд</td>
+                                <td>{{azsDetails.data.Brand}}</td>
+                            </tr>
+                            <tr>
+                                <td>Дата открытия</td>
+                                <td>{{azsDetails.data.OpenDate}}</td>
+                                <td>Дата закрытия</td>
+                                <td>{{azsDetails.data.CloseDate}}</td>
+                            </tr>
+                            <tr>
+                                <td>Статус</td>
+                                <td>{{azsDetails.data.Status}}</td>
+                                <td>Тип принадлежности</td>
+                                <td>{{azsDetails.data.OwnType}}</td>
+                            </tr>
+                            <tr>
+                                <td>Партнер</td>
+                                <td>{{azsDetails.data.Partner}}</td>
+                                <td>Тип местоположения</td>
+                                <td>{{azsDetails.data.LocationType}}</td>
+                            </tr>
+                            <tr>
+                                <td>Широта</td>
+                                <td>{{azsDetails.data.Latitude}}</td>
+                                <td>Долгота</td>
+                                <td>{{azsDetails.data.Longitude}}</td>
+                            </tr>
+                            <tr>
+                                <td>Адрес</td>
+                                <td>{{azsDetails.data.Country}}, {{azsDetails.data.Region}}, {{azsDetails.data.City}},
+                                    {{azsDetails.data.Street}}, {{azsDetails.data.House}}
+                                    , {{azsDetails.data.Building}}</td>
+                            </tr>
+                            <tr>
+                                <td>Телефон</td>
+                                <td>{{azsDetails.data.Phone}}</td>
+                                <td>Факс</td>
+                                <td>{{azsDetails.data.Fax}}</td>
+                            </tr>
+                            <tr>
+                                <td>Принадлежность АЗС</td>
+                                <td>{{azsDetails.data.ITSCGSBelongsTo}}</td>
+                                <td>Тип АЗС</td>
+                                <td>{{azsDetails.data.AddInfo03}}</td>
+                            </tr>
+                            <tr>
+                                <td>Отделение ГПН</td>
+                                <td>{{azsDetails.data.ITSCSecessionGPN}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p-checkbox
+                                            [(ngModel)]="fuelCardsAvailable"
+                                            binary="true"
+                                            disabled="true"
+                                            label="Приём топливных карт"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox
+                                            [(ngModel)]="loyalCardsAvailable"
+                                            binary="true"
+                                            disabled="true"
+                                            label="Приём карт лояльности"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox
+                                            [(ngModel)]="bankCardsAvailable"
+                                            binary="true"
+                                            disabled="true"
+                                            label="Приём банковских карт"></p-checkbox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="control-label">Трассы: </label>
+                                </td>
+                                <td>
+                                    <label *ngFor="let track of azsDetails?.data?.ListOfTracks"
+                                           class="control-label">{{track?.id}}</label>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Терминалы">
+
+                        <p-table *ngIf="azsDetails?.data?.ListOfTerminals"
+                                 [responsive]="true"
+                                 [value]="azsDetails?.data?.ListOfTerminals[0].Terminal"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th scope="col-sm">Способ подключения</th>
+                                    <th scope="col-sm">Статус</th>
+                                    <th scope="col-sm">Идентификатор терминала</th>
+                                    <th scope="col-sm">Наименование</th>
+                                    <th scope="col-sm">Номер</th>
+                                    <th scope="col-sm">Тип</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template let-term pTemplate="body">
+                                <tr>
+                                    <td>{{term.ConnectionType}}</td>
+                                    <td>{{term.Status}}</td>
+                                    <td>{{term.TerminalId}}</td>
+                                    <td>{{term.TerminalName}}</td>
+                                    <td>{{term.TerminalNumber}}</td>
+                                    <td>{{term.TerminalType}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Сервисы">
+                        <p-table *ngIf="azsDetails?.data?.ListOfServices"
+                                 [responsive]="true"
+                                 [value]="azsDetails?.data?.ListOfServices[0].Service"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th scope="col-sm">Id услуги</th>
+                                    <th scope="col-sm">Наименование</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template let-serv pTemplate="body">
+                                <tr>
+                                    <td>{{serv.SiebelID}}</td>
+                                    <td>{{serv.Value}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </p-accordionTab>
+                </p-accordion>
+            </p-dialog>
 
 
-<p-dialog header="АЗС на карте"
-          [(visible)]="gMapDialogVisible"
-          positionTop="50">
-    <p-gmap [options]="options"
-            [style]="{'width':'640px','height':'640px'}"
-            [overlays]="overlays"></p-gmap>
-</p-dialog>
-
+            <p-dialog [(visible)]="gMapDialogVisible"
+                      header="АЗС на карте"
+                      positionTop="50">
+                <p-gmap [options]="options"
+                        [overlays]="overlays"
+                        [style]="{'width':'640px','height':'640px'}"></p-gmap>
+            </p-dialog>
+        </p-tabPanel>
+        <p-tabPanel header="Схема взаимодействия">
+            <img class="img-fluid" id="scheme-crm-azsdetails" src="assets/images/scheme-crm.png">
+        </p-tabPanel>
+        <p-tabPanel header="Инфраструктура">
+            <img class="img-fluid" id="scheme-infr" src="assets/images/infr-crm.jpg">
         </p-tabPanel>
     </p-tabView>
 </p-panel>

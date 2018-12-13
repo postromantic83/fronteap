@@ -24,14 +24,6 @@ export class AzsDetails {
                         "TerminalType": string,
                         "TerminalName": string,
                         "TerminalId": string
-                    },
-                    {
-                        "Status": string,
-                        "ConnectionType": string,
-                        "TerminalNumber": string,
-                        "TerminalType": string,
-                        "TerminalName": string,
-                        "TerminalId": string
                     }
                     ]
             }
@@ -41,78 +33,6 @@ export class AzsDetails {
         "ListOfServices": [
             {
                 "Service": [
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
-                    {
-                        "Value": string,
-                        "SiebelID": string
-                    },
                     {
                         "Value": string,
                         "SiebelID": string

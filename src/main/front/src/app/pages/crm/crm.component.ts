@@ -37,6 +37,14 @@ export class CrmComponent implements OnInit{
     requestBody.FLTCards = this.true2Y(this.fuelCardsFilterSelect);
     requestBody.LTYCards = this.true2Y(this.loyalCardsFilterSelect);
     requestBody.GPBCards = this.true2Y(this.bankCardsFilterSelect);
+    //mocked fields
+    requestBody.ClientIP = '127.0.0.1';
+    requestBody.ClientSource = 'WebClientESB';
+    requestBody.RequestTime = '11/23/2018 00.00.00';
+    requestBody.languageID = 'RUS';
+    requestBody.SessionID = 'N/A';
+    requestBody.UserLogin = 'N/A';
+    requestBody.ContractID = 'N/A';
     this.crmService.postfltGasStationsList(requestBody).subscribe(
         (azsListResponse: AzsList) => {
           this.azsList = azsListResponse;
@@ -62,6 +70,19 @@ export class CrmComponent implements OnInit{
   details(inId: string){
     let requestBody = new AzsDetailsRequest();
     requestBody.ID = inId;
+    requestBody.ClientSource = 'WebClientESB';
+    requestBody.LTYCards = this.true2Y(this.loyalCardsFilterSelect);;
+    requestBody.ClientIP = '127.0.0.1';
+    requestBody.UserLogin = 'N/A';
+    requestBody.RequestTime = '11/23/2018 00.00.00';
+    requestBody.FLTCards = this.true2Y(this.fuelCardsFilterSelect);
+    requestBody.SessionID =  'N/A';
+    requestBody.GPBCards = this.true2Y(this.bankCardsFilterSelect);
+    requestBody.languageID = 'RUS';
+    requestBody.ContractID = 'N/A';
+    requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDay() + '/'
+        + this.dateLastChange.getFullYear();
+
     this.crmService.azsDetails(requestBody).subscribe(
         (azsDetailsResponse: AzsDetails) => {
           this.azsDetails = azsDetailsResponse;

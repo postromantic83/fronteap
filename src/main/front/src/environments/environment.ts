@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   scoutUrl: 'http://scoutintegration-scoutintegration.kspd-apps.demo.rht.ru',
-  crmUrl: 'http://crmintegration-crmintegration.kspd-apps.demo.rht.ru'
+  crmUrl: 'http://crmintegration-crmintegration.dmz-apps.demo.rht.ru'
   // scoutUrl: 'http://localhost:8090',
   // crmUrl: 'http://localhost:8085'
 };

@@ -34,7 +34,7 @@ export class CrmComponent implements OnInit{
   }
   stationList() {
     let requestBody = new FltGasStationsListRequest();
-    requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDay() + '/'
+    requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDate() + '/'
         + this.dateLastChange.getFullYear();
     requestBody.FLTCards = this.true2Y(this.fuelCardsFilterSelect);
     requestBody.LTYCards = this.true2Y(this.loyalCardsFilterSelect);

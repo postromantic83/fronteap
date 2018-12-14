@@ -21,6 +21,7 @@ import {CrmComponent} from './pages/crm/crm.component';
 import {ScoutComponent} from './pages/scout/scout.component';
 import {UnitPickerComponent} from './pages/scout/unit-picker.component';
 import {CrmService} from "./services/crm.service";
+import {ToastModule} from "primeng/toast";
 
 const routes: Routes = [
   {path: '', redirectTo: '/scout', pathMatch: 'full'},
@@ -41,6 +42,7 @@ const routes: Routes = [
     AccordionModule,
     CheckboxModule,
     InputTextModule,
+    ToastModule,
     PaginatorModule,
     DialogModule,
     TableModule,

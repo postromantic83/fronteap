@@ -6,11 +6,13 @@ import {AzsDetails} from "../../model/azs-details.model";
 import {FltGasStationsListRequest} from "../../model/FltGasStationsListRequest.model";
 import {AzsDetailsRequest} from "../../model/azs-details-request.model";
 import {CorrelationId} from "../../model/correlation-id.model";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-crm',
   templateUrl: './crm.component.html',
-  styleUrls: ['./crm.component.css']
+  styleUrls: ['./crm.component.css'],
+  providers: [MessageService]
 })
 export class CrmComponent implements OnInit{
   public azsList: AzsList;
@@ -29,7 +31,7 @@ export class CrmComponent implements OnInit{
   public bankCardsFilterSelect: boolean;
   public azsListcorrId: string;
   options: any;
-  constructor (private crmService: CrmService) {  }
+  constructor (private crmService: CrmService, private messageService: MessageService) {  }
   ngOnInit(): void {
   }
   stationList() {
@@ -63,6 +65,9 @@ export class CrmComponent implements OnInit{
     this.crmService.getResultGasStationsList(this.azsListcorrId).subscribe(
         (azsListResponse: AzsList) => {
           this.azsList = azsListResponse;
+          if(azsListResponse.status.code === 204) {
+            this.showWarn(azsListResponse.status.message);
+          }
         },
         error => {
           console.log('Ошибка обращения к сервису!');
@@ -81,7 +86,10 @@ export class CrmComponent implements OnInit{
         }
     );
   }
-
+  showWarn(serviceMessage: string) {
+    this.messageService.add({severity:'warn', summary: 'Ошибка получения данных', detail:'Данные не обработаны: ' +
+    serviceMessage});
+  }
   details(inId: string){
     let requestBody = new AzsDetailsRequest();
     requestBody.ID = inId;

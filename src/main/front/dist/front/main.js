@@ -329,22 +329,54 @@ var CrmComponent = /** @class */ (function () {
         ;
         requestBody.ClientIP = '127.0.0.1';
         requestBody.UserLogin = 'N/A';
-        requestBody.RequestTime = '11/23/2018 00.00.00';
+        requestBody.RequestTime = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDate() + '/'
+            + this.dateLastChange.getFullYear();
         requestBody.FLTCards = this.true2Y(this.fuelCardsFilterSelect);
         requestBody.SessionID = 'N/A';
         requestBody.GPBCards = this.true2Y(this.bankCardsFilterSelect);
         requestBody.languageID = 'RUS';
         requestBody.ContractID = 'N/A';
-        requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDay() + '/'
-            + this.dateLastChange.getFullYear();
+        // requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDay() + '/'
+        //     + this.dateLastChange.getFullYear();
         this.crmService.azsDetails(requestBody).subscribe(function (azsDetailsResponse) {
-            _this.azsDetails = azsDetailsResponse;
-            _this.fuelCardsAvailable = _this.y2True(_this.azsDetails.data.FLTCards);
-            _this.loyalCardsAvailable = _this.y2True(_this.azsDetails.data.LTYCards);
-            _this.bankCardsAvailable = _this.y2True(_this.azsDetails.data.GPBCards);
+            _this.getAszDetails(azsDetailsResponse.correlationId);
         }, function (error) {
             console.log('Ошибка обращения к сервису!');
             console.log(error);
+        });
+    };
+    CrmComponent.prototype.getAszDetails = function (corId) {
+        var _this = this;
+        var i;
+        for (i = 0; i <= 5; i++) {
+            console.log('Попытка: ' + i);
+            this.delay(1000).then(function (any) {
+                console.log('Делей на попытке: ' + i);
+                _this.crmService.getResultAzsDetails(corId).subscribe(function (azsDetailsResponse) {
+                    _this.azsDetails = azsDetailsResponse;
+                    _this.fuelCardsAvailable = _this.y2True(_this.azsDetails.data.FLTCards);
+                    _this.loyalCardsAvailable = _this.y2True(_this.azsDetails.data.LTYCards);
+                    _this.bankCardsAvailable = _this.y2True(_this.azsDetails.data.GPBCards);
+                    console.log('Данные получены!');
+                    return;
+                    console.log('Выход из цикла');
+                }, function (error) {
+                    console.log('Ошибка обращения к сервису на попытке: ' + i);
+                    console.log(error);
+                });
+            });
+        }
+    };
+    CrmComponent.prototype.delay = function (ms) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(function () { return resolve(); }, ms); }).then(function () { return console.log("fired"); })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     CrmComponent.prototype.onRowSelect = function (event) {
@@ -615,13 +647,24 @@ var CrmService = /** @class */ (function () {
         //     this.handleError(new HttpErrorResponse(body))
         // );
     };
+    /**
+     * Результаты по списку АЗС.
+     * @param corId
+     */
+    CrmService.prototype.getResultGasStationsList = function (corId) {
+        return this.http.get(this.crmGetResultURL + '/' + corId);
+    };
     CrmService.prototype.postfltGasStationsDetailedList = function (body) {
         return this.http.post(this.crmtGasStationDetailedListURL, body);
     };
     CrmService.prototype.azsDetails = function (body) {
         return this.http.post(this.crmGasStationDetails, body);
     };
-    CrmService.prototype.getResultGasStationsList = function (corId) {
+    /**
+     * Результаты по списку АЗС.
+     * @param corId
+     */
+    CrmService.prototype.getResultAzsDetails = function (corId) {
         return this.http.get(this.crmGetResultURL + '/' + corId);
     };
     //TODO сделать обработку ошибок.

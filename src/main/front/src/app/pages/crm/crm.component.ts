@@ -89,27 +89,53 @@ export class CrmComponent implements OnInit{
     requestBody.LTYCards = this.true2Y(this.loyalCardsFilterSelect);;
     requestBody.ClientIP = '127.0.0.1';
     requestBody.UserLogin = 'N/A';
-    requestBody.RequestTime = '11/23/2018 00.00.00';
+    requestBody.RequestTime = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDate() + '/'
+        + this.dateLastChange.getFullYear();
     requestBody.FLTCards = this.true2Y(this.fuelCardsFilterSelect);
     requestBody.SessionID =  'N/A';
     requestBody.GPBCards = this.true2Y(this.bankCardsFilterSelect);
     requestBody.languageID = 'RUS';
     requestBody.ContractID = 'N/A';
-    requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDay() + '/'
-        + this.dateLastChange.getFullYear();
+    // requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDay() + '/'
+    //     + this.dateLastChange.getFullYear();
 
     this.crmService.azsDetails(requestBody).subscribe(
-        (azsDetailsResponse: AzsDetails) => {
-          this.azsDetails = azsDetailsResponse;
-          this.fuelCardsAvailable = this.y2True(this.azsDetails.data.FLTCards);
-          this.loyalCardsAvailable =  this.y2True(this.azsDetails.data.LTYCards);
-          this.bankCardsAvailable =  this.y2True(this.azsDetails.data.GPBCards);
+        (azsDetailsResponse: CorrelationId) => {
+          this.getAszDetails(azsDetailsResponse.correlationId);
         },
         error => {
           console.log('Ошибка обращения к сервису!');
           console.log(error);
         }
     );
+  }
+
+  private getAszDetails (corId: string) {
+    var i: number;
+    for (i = 0; i<=5; i++) {
+      console.log('Попытка: ' + i);
+      this.delay(1000).then(any=>{
+        console.log('Делей на попытке: ' + i);
+      this.crmService.getResultAzsDetails(corId).subscribe(
+          (azsDetailsResponse: AzsDetails) => {
+            this.azsDetails = azsDetailsResponse;
+            this.fuelCardsAvailable = this.y2True(this.azsDetails.data.FLTCards);
+            this.loyalCardsAvailable =  this.y2True(this.azsDetails.data.LTYCards);
+            this.bankCardsAvailable =  this.y2True(this.azsDetails.data.GPBCards);
+            console.log('Данные получены!');
+            return;
+            console.log('Выход из цикла');
+          },
+          error => {
+            console.log('Ошибка обращения к сервису на попытке: ' + i);
+            console.log(error);
+          }
+      );
+      });
+    }
+  }
+  private async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
   }
   onRowSelect(event) {
     console.log('ROW SELECTED! ' + event.data.ID);

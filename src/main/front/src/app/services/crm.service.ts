@@ -28,17 +28,31 @@ export class CrmService {
             // );
     }
 
+    /**
+     * Результаты по списку АЗС.
+     * @param corId
+     */
+    public getResultGasStationsList(corId: string): Observable<AzsList> {
+        return this.http.get<AzsList>(this.crmGetResultURL + '/' + corId);
+    }
+
     public postfltGasStationsDetailedList (body: string): Observable<AzsDetailedList> {
         return this.http.post<AzsDetailedList>(this.crmtGasStationDetailedListURL, body);
     }
 
-    public azsDetails(body: AzsDetailsRequest): Observable<AzsDetails> {
-        return this.http.post<AzsDetails>(this.crmGasStationDetails, body);
+    public azsDetails(body: AzsDetailsRequest): Observable<CorrelationId> {
+        return this.http.post<CorrelationId>(this.crmGasStationDetails, body);
     }
 
-    public getResultGasStationsList(corId: string): Observable<AzsList> {
-        return this.http.get<AzsList>(this.crmGetResultURL + '/' + corId);
+    /**
+     * Результаты по списку АЗС.
+     * @param corId
+     */
+    public getResultAzsDetails(corId: string): Observable<AzsDetails> {
+        return this.http.get<AzsDetails>(this.crmGetResultURL + '/' + corId);
     }
+
+
 
     //TODO сделать обработку ошибок.
     private handleError(error: HttpErrorResponse) {

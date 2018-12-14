@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="10c55ca3-00bb-472d-be71-e3851af2f2a0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/front/dist/front/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/front/dist/front/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/front/dist/front/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/front/dist/front/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/front/src/app/services/crm.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/front/src/app/services/crm.service.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="36" column="93" selection-start-line="36" selection-start-column="93" selection-end-line="36" selection-end-column="93" />
+            <state relative-caret-position="932">
+              <caret line="135" column="3" selection-start-line="135" selection-start-column="3" selection-end-line="135" selection-end-column="3" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -33,19 +31,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/front/src/app/pages/scout/unit-picker.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/front/src/app/services/crm.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+            <state relative-caret-position="609">
+              <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
               <folding>
                 <element signature="e#0#67#0" expanded="true" />
               </folding>
@@ -95,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+            <state relative-caret-position="510">
+              <caret line="117" column="60" lean-forward="true" selection-start-line="117" selection-start-column="60" selection-end-line="117" selection-end-column="60" />
               <folding>
                 <element signature="n#style#0;n#p-button#0;n#div#4;n#div#0;n#p-tabPanel#0;n#p-tabView#0;n#p-panel#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p-button#0;n#div#6;n#div#0;n#p-tabPanel#0;n#p-tabView#0;n#p-panel#0;n#!!top" expanded="true" />
@@ -185,9 +174,9 @@
         <option value="$PROJECT_DIR$/src/main/front/src/app/pages/scout/scout.component.html" />
         <option value="$PROJECT_DIR$/src/main/front/src/app/model/correlation-id.model.ts" />
         <option value="$PROJECT_DIR$/src/main/front/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.html" />
         <option value="$PROJECT_DIR$/src/main/front/src/app/services/crm.service.ts" />
         <option value="$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.ts" />
-        <option value="$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.html" />
       </list>
     </option>
   </component>
@@ -224,10 +213,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="2586" />
-    <option name="height" value="1386" />
+    <option name="x" value="2552" />
+    <option name="y" value="-8" />
+    <option name="width" value="2576" />
+    <option name="height" value="1416" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -331,7 +320,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544776992119" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544783673176" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="D:/test/mock2/mock" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -469,7 +458,7 @@
       <workItem from="1544624494436" duration="3703000" />
       <workItem from="1544682840241" duration="19450000" />
       <workItem from="1544714193448" duration="1182000" />
-      <workItem from="1544768599560" duration="8083000" />
+      <workItem from="1544768599560" duration="11288000" />
     </task>
     <task id="LOCAL-00001" summary="add images">
       <created>1544612048212</created>
@@ -555,17 +544,31 @@
       <option name="project" value="LOCAL" />
       <updated>1544776424940</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="date format">
+      <created>1544777038021</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1544777038021</updated>
+    </task>
+    <task id="LOCAL-00014" summary="date format">
+      <created>1544777698270</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1544777698270</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72039000" />
+    <option name="totallyTimeSpent" value="75244000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
+    <frame x="2552" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3659919" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11128776" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -576,7 +579,7 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.45470694" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4991119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3998441" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -588,12 +591,12 @@
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32969603" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.25044405" />
+      <window_info anchor="bottom" id="Version Control" order="14" visible="true" weight="0.114575215" />
       <window_info anchor="bottom" id="Messages" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.15060729" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.073926866" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -928,16 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/front/src/app/services/crm.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/front/src/app/services/scout.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -948,23 +941,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.ts">
+    <entry file="file://$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="36" column="93" selection-start-line="36" selection-start-column="93" selection-end-line="36" selection-end-column="93" />
+        <state relative-caret-position="510">
+          <caret line="117" column="60" lean-forward="true" selection-start-line="117" selection-start-column="60" selection-end-line="117" selection-end-column="60" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="n#style#0;n#p-button#0;n#div#4;n#div#0;n#p-tabPanel#0;n#p-tabView#0;n#p-panel#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p-button#0;n#div#6;n#div#0;n#p-tabPanel#0;n#p-tabView#0;n#p-panel#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.html">
+    <entry file="file://$PROJECT_DIR$/src/main/front/src/app/services/crm.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+        <state relative-caret-position="609">
+          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
           <folding>
-            <element signature="n#style#0;n#p-button#0;n#div#4;n#div#0;n#p-tabPanel#0;n#p-tabView#0;n#p-panel#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p-button#0;n#div#6;n#div#0;n#p-tabPanel#0;n#p-tabView#0;n#p-panel#0;n#!!top" expanded="true" />
+            <element signature="e#0#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/front/src/app/pages/crm/crm.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="932">
+          <caret line="135" column="3" selection-start-line="135" selection-start-column="3" selection-end-line="135" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>

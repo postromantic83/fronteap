@@ -8,6 +8,7 @@ import {AzsDetailedList} from "../model/azs-detailed-list.model";
 import {AzsDetails} from "../model/azs-details.model";
 import {FltGasStationsListRequest} from "../model/FltGasStationsListRequest.model";
 import {AzsDetailsRequest} from "../model/azs-details-request.model";
+import {CorrelationId} from "../model/correlation-id.model";
 @Injectable()
 export class CrmService {
     constructor(private http: HttpClient) { }
@@ -15,12 +16,13 @@ export class CrmService {
     private crmGasStationListURL = this.serviceURL + '/crm/fltGasStationsList';
     private crmtGasStationDetailedListURL = this.serviceURL + '/crm/fltGasStationsDetailedList';
     private crmGasStationDetails = this.serviceURL + '/crm/fltGasStationDetails';
+    private crmGetResultURL = this.serviceURL + '/crm/getResponse';
 
     /**
      * Получение списка АЗС.
      */
-    public postfltGasStationsList (body: FltGasStationsListRequest): Observable<AzsList> {
-        return this.http.post<AzsList>(this.crmGasStationListURL, body);
+    public postfltGasStationsList (body: FltGasStationsListRequest): Observable<CorrelationId> {
+        return this.http.post<CorrelationId>(this.crmGasStationListURL, body);
             // .pipe(
             //     this.handleError(new HttpErrorResponse(body))
             // );
@@ -32,6 +34,10 @@ export class CrmService {
 
     public azsDetails(body: AzsDetailsRequest): Observable<AzsDetails> {
         return this.http.post<AzsDetails>(this.crmGasStationDetails, body);
+    }
+
+    public getResultGasStationsList(corId: string): Observable<AzsList> {
+        return this.http.get<AzsList>(this.crmGetResultURL + '/' + corId);
     }
 
     //TODO сделать обработку ошибок.

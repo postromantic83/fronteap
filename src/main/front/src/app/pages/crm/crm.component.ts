@@ -5,6 +5,7 @@ import {AzsDetailedList} from "../../model/azs-detailed-list.model";
 import {AzsDetails} from "../../model/azs-details.model";
 import {FltGasStationsListRequest} from "../../model/FltGasStationsListRequest.model";
 import {AzsDetailsRequest} from "../../model/azs-details-request.model";
+import {CorrelationId} from "../../model/correlation-id.model";
 
 @Component({
   selector: 'app-crm',
@@ -26,31 +27,44 @@ export class CrmComponent implements OnInit{
   public fuelCardsFilterSelect: boolean;
   public loyalCardsFilterSelect: boolean;
   public bankCardsFilterSelect: boolean;
+  public azsListcorrId: string;
   options: any;
   constructor (private crmService: CrmService) {  }
   ngOnInit(): void {
   }
   stationList() {
     let requestBody = new FltGasStationsListRequest();
-    requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDay() + '/'
-        + this.dateLastChange.getFullYear();
+    requestBody.AmndDate = this.dateLastChange.getMonth() + '%2F' + this.dateLastChange.getDay() + '%2F'
+        + this.dateLastChange.getFullYear() + '00:00:00';
     requestBody.FLTCards = this.true2Y(this.fuelCardsFilterSelect);
     requestBody.LTYCards = this.true2Y(this.loyalCardsFilterSelect);
     requestBody.GPBCards = this.true2Y(this.bankCardsFilterSelect);
     //mocked fields
     requestBody.ClientIP = '127.0.0.1';
     requestBody.ClientSource = 'WebClientESB';
-    requestBody.RequestTime = '11/23/2018 00.00.00';
+    requestBody.RequestTime = '11/23/2018 00:00:00';
     requestBody.languageID = 'RUS';
     requestBody.SessionID = 'N/A';
     requestBody.UserLogin = 'N/A';
     requestBody.ContractID = 'N/A';
     this.crmService.postfltGasStationsList(requestBody).subscribe(
+        (correlationIdObject: CorrelationId) => {
+          this.azsListcorrId = correlationIdObject.correlationId;
+          console.log('Получение корИд по списку АЗС: ' + correlationIdObject.correlationId);
+        },
+        error => {
+          console.log('Ошибка обращения к сервису!');
+          console.log(error);
+        }
+    );
+  }
+  stationListResult() {
+    this.crmService.getResultGasStationsList(this.azsListcorrId).subscribe(
         (azsListResponse: AzsList) => {
           this.azsList = azsListResponse;
         },
         error => {
-          console.log('факеншит!');
+          console.log('Ошибка обращения к сервису!');
           console.log(error);
         }
     );
@@ -61,7 +75,7 @@ export class CrmComponent implements OnInit{
           this.azsDetailedList = azsDetailsListResponse;
         },
         error => {
-          console.log('факеншит!');
+          console.log('Ошибка обращения к сервису!');
           console.log(error);
         }
     );
@@ -91,7 +105,7 @@ export class CrmComponent implements OnInit{
           this.bankCardsAvailable =  this.y2True(this.azsDetails.data.GPBCards);
         },
         error => {
-          console.log('факеншит!');
+          console.log('Ошибка обращения к сервису!');
           console.log(error);
         }
     );

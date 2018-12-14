@@ -7,7 +7,7 @@ import {
   ButtonModule,
   CalendarModule, CheckboxModule, DialogModule,
   DropdownModule, GMapModule,
-  InputSwitchModule, PaginatorModule,
+  InputSwitchModule, InputTextModule, PaginatorModule,
   PanelModule,
   TabViewModule
 } from 'primeng/primeng';
@@ -40,6 +40,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     AccordionModule,
     CheckboxModule,
+    InputTextModule,
     PaginatorModule,
     DialogModule,
     TableModule,

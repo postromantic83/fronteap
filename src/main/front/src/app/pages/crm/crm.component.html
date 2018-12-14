@@ -47,6 +47,21 @@
                               style="padding-left: 20px"
                               styleClass="ui-button-success"></p-button>
                 </div>
+                <div class="row">
+                    <input type="text"
+                           class="col-sm-4"
+                           pInputText
+                           [(ngModel)]="azsListcorrId"
+                           placeholder="CorrelationId"/>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <p-button (onClick)="stationListResult($event)"
+                              class="col-sm-2"
+                              label="Получить данные по CorId"
+                              style="padding-left: 20px"
+                              styleClass="ui-button-success"></p-button>
+                </div>
             </div>
 
             <!--<p-button (onClick)="stationDetailsList($event)"-->

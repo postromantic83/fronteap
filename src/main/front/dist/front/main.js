@@ -280,15 +280,16 @@ var CrmComponent = /** @class */ (function () {
     CrmComponent.prototype.stationList = function () {
         var _this = this;
         var requestBody = new _model_FltGasStationsListRequest_model__WEBPACK_IMPORTED_MODULE_3__["FltGasStationsListRequest"]();
-        requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDate() + '/'
-            + this.dateLastChange.getFullYear();
+        // requestBody.AmndDate = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDate() + '/'
+        //     + this.dateLastChange.getFullYear();
         requestBody.FLTCards = this.true2Y(this.fuelCardsFilterSelect);
         requestBody.LTYCards = this.true2Y(this.loyalCardsFilterSelect);
         requestBody.GPBCards = this.true2Y(this.bankCardsFilterSelect);
         //mocked fields
         requestBody.ClientIP = '127.0.0.1';
         requestBody.ClientSource = 'WebClientESB';
-        requestBody.RequestTime = '11/23/2018 00:00:00';
+        requestBody.RequestTime = this.dateLastChange.getMonth() + '/' + this.dateLastChange.getDate() + '/'
+            + this.dateLastChange.getFullYear();
         requestBody.languageID = 'RUS';
         requestBody.SessionID = 'N/A';
         requestBody.UserLogin = 'N/A';

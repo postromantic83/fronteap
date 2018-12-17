@@ -65,8 +65,11 @@ export class CrmComponent implements OnInit{
     this.crmService.getResultGasStationsList(this.azsListcorrId).subscribe(
         (azsListResponse: AzsList) => {
           this.azsList = azsListResponse;
-          if(azsListResponse.status.code === 204) {
+          if(azsListResponse.status.code == 204) {
             this.showWarn(azsListResponse.status.message);
+          }
+          if(azsListResponse.status.code == 200) {
+            this.showSuccess();
           }
         },
         error => {
@@ -87,8 +90,11 @@ export class CrmComponent implements OnInit{
     );
   }
   showWarn(serviceMessage: string) {
-    this.messageService.add({severity:'warn', summary: 'Ошибка получения данных', detail:'Данные не обработаны: ' +
-    serviceMessage});
+    this.messageService.add({severity:'warn', summary: 'Ошибка получения данных', detail:'Данные ещё не обработаны: ' +
+          serviceMessage});
+  }
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'Получение', detail:'Данные получены!'});
   }
   details(inId: string){
     let requestBody = new AzsDetailsRequest();

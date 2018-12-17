@@ -41,7 +41,7 @@ module.exports = "#esb-header {\r\n  text-align: left;\r\n  color: #0079c1;\r\n}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n  <a class=\"navbar-brand\" routerLink=\"/\">\r\n    <img alt=\"\" src=\"assets/images/logo-svg.svg\">\r\n  </a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/scout\" routerLinkActive=\"active\">СКАУТ </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/crm\" routerLinkActive=\"active\">Личный кабинет</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n  <h1 id=\"esb-header\" class=\"esb-header\">ESB сервисная шина</h1>\r\n</nav>\r\n\r\n<router-outlet></router-outlet>\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n  <a class=\"navbar-brand\" routerLink=\"/\">\r\n    <img alt=\"\" src=\"assets/images/logo-svg.svg\">\r\n  </a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/scout\" routerLinkActive=\"active\">СКАУТ </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/crm\" routerLinkActive=\"active\">Личный кабинет</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n  <h1 id=\"esb-header\" class=\"esb-header\">ESB сервисная шина</h1>\r\n  <img alt=\"\" src=\"assets/images/snow_tree.png\"  height=\"60px\">\r\n</nav>\r\n\r\n<router-outlet></router-outlet>\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -314,8 +314,11 @@ var CrmComponent = /** @class */ (function () {
         var _this = this;
         this.crmService.getResultGasStationsList(this.azsListcorrId).subscribe(function (azsListResponse) {
             _this.azsList = azsListResponse;
-            if (azsListResponse.status.code === 204) {
+            if (azsListResponse.status.code == 204) {
                 _this.showWarn(azsListResponse.status.message);
+            }
+            if (azsListResponse.status.code == 200) {
+                _this.showSuccess();
             }
         }, function (error) {
             console.log('Ошибка обращения к сервису!');
@@ -332,8 +335,11 @@ var CrmComponent = /** @class */ (function () {
         });
     };
     CrmComponent.prototype.showWarn = function (serviceMessage) {
-        this.messageService.add({ severity: 'warn', summary: 'Ошибка получения данных', detail: 'Данные не обработаны: ' +
+        this.messageService.add({ severity: 'warn', summary: 'Ошибка получения данных', detail: 'Данные ещё не обработаны: ' +
                 serviceMessage });
+    };
+    CrmComponent.prototype.showSuccess = function () {
+        this.messageService.add({ severity: 'success', summary: 'Получение', detail: 'Данные получены!' });
     };
     CrmComponent.prototype.details = function (inId) {
         var _this = this;

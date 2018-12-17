@@ -1,4 +1,6 @@
 export class AzsList {
+    public code: number;
+    public description: string;
     public status: {
         "code": number,
         "message": string

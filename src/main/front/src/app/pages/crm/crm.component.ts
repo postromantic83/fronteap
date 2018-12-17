@@ -65,16 +65,17 @@ export class CrmComponent implements OnInit{
     this.crmService.getResultGasStationsList(this.azsListcorrId).subscribe(
         (azsListResponse: AzsList) => {
           this.azsList = azsListResponse;
-          if(azsListResponse.status.code == 204) {
-            this.showWarn(azsListResponse.status.message);
+          if(azsListResponse.code == 204) {
+            this.showWarn(azsListResponse.description);
           }
-          if(azsListResponse.status.code == 200) {
+          if(azsListResponse.status.code == 0) {
             this.showSuccess();
           }
         },
         error => {
           console.log('Ошибка обращения к сервису!');
           console.log(error);
+          this.showError(error);
         }
     );
   }
@@ -86,6 +87,7 @@ export class CrmComponent implements OnInit{
         error => {
           console.log('Ошибка обращения к сервису!');
           console.log(error);
+          this.showError(error);
         }
     );
   }
@@ -95,6 +97,10 @@ export class CrmComponent implements OnInit{
   }
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Получение', detail:'Данные получены!'});
+  }
+  showError(serviceMessage: string) {
+    this.messageService.add({severity:'error', summary: 'Ошибка', detail:'Ошибка обращения к сервису: ' +
+          serviceMessage});
   }
   details(inId: string){
     let requestBody = new AzsDetailsRequest();

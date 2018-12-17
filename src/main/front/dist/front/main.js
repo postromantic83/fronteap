@@ -314,15 +314,16 @@ var CrmComponent = /** @class */ (function () {
         var _this = this;
         this.crmService.getResultGasStationsList(this.azsListcorrId).subscribe(function (azsListResponse) {
             _this.azsList = azsListResponse;
-            if (azsListResponse.status.code == 204) {
-                _this.showWarn(azsListResponse.status.message);
+            if (azsListResponse.code == 204) {
+                _this.showWarn(azsListResponse.description);
             }
-            if (azsListResponse.status.code == 200) {
+            if (azsListResponse.status.code == 0) {
                 _this.showSuccess();
             }
         }, function (error) {
             console.log('Ошибка обращения к сервису!');
             console.log(error);
+            _this.showError(error);
         });
     };
     CrmComponent.prototype.stationDetailsList = function () {
@@ -332,6 +333,7 @@ var CrmComponent = /** @class */ (function () {
         }, function (error) {
             console.log('Ошибка обращения к сервису!');
             console.log(error);
+            _this.showError(error);
         });
     };
     CrmComponent.prototype.showWarn = function (serviceMessage) {
@@ -340,6 +342,10 @@ var CrmComponent = /** @class */ (function () {
     };
     CrmComponent.prototype.showSuccess = function () {
         this.messageService.add({ severity: 'success', summary: 'Получение', detail: 'Данные получены!' });
+    };
+    CrmComponent.prototype.showError = function (serviceMessage) {
+        this.messageService.add({ severity: 'error', summary: 'Ошибка', detail: 'Ошибка обращения к сервису: ' +
+                serviceMessage });
     };
     CrmComponent.prototype.details = function (inId) {
         var _this = this;

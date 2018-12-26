@@ -22,18 +22,22 @@ import {ScoutComponent} from './pages/scout/scout.component';
 import {UnitPickerComponent} from './pages/scout/unit-picker.component';
 import {CrmService} from "./services/crm.service";
 import {ToastModule} from "primeng/toast";
+import {McComponent} from "./pages/mc/mc.component";
+import {McService} from "./services/mc.service";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/scout', pathMatch: 'full'},
+  {path: '', redirectTo: '/mc', pathMatch: 'full'},
   {path: 'scout', component: ScoutComponent},
-  {path: 'crm', component: CrmComponent}
+  {path: 'crm', component: CrmComponent},
+  {path: 'mc', component: McComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ScoutComponent,
     CrmComponent,
+    McComponent,
+    ScoutComponent,
     UnitPickerComponent
   ],
   imports: [
@@ -58,7 +62,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  providers: [ScoutService, CrmService],
+  providers: [ScoutService, CrmService, McService],
   bootstrap: [AppComponent]
 })
 

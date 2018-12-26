@@ -1,0 +1,31 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="container-fluid align-self-end">
+    <p-panel header="Получение данных из Мобильной карты">
+        <p-tabView>
+            <p-tabPanel header="АЗС">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <p-button (onClick)="getAzsList($event)"
+                              class="col-sm-2"
+                              label="Список АЗС"
+                              style="padding-left: 20px"
+                              styleClass="ui-button-success"></p-button>
+                </div>
+                <table *ngIf="azsList" class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col-sm-4">id</th>
+                        <th scope="col-sm-4">Номер</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let azs of azsList">
+                    <tr>
+                        <td>{{azs.id}}</td>
+                        <td>{{azs.number}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </p-tabPanel>
+        </p-tabView>
+    </p-panel>
+</div>

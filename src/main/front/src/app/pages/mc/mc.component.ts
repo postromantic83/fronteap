@@ -20,7 +20,7 @@ export class McComponent implements OnInit {
         this.mcService.getAzsList().subscribe(
             (azsListResponse: McAzs[]) => {
                 this.azsList = azsListResponse;
-                this.showSuccess();
+                this.showSuccess('Данные по АЗС получены.');
             },
             error => {
                 this.showError(error);
@@ -33,7 +33,7 @@ export class McComponent implements OnInit {
                 serviceMessage});
     }
 
-    showSuccess() {
-        this.messageService.add({severity:'success', summary: 'Получение', detail:'Данные получены!'});
+    showSuccess(serviceMessage: string) {
+        this.messageService.add({severity:'success', summary: 'Получение', detail:serviceMessage});
     }
 }

@@ -24,6 +24,7 @@ import {CrmService} from "./services/crm.service";
 import {ToastModule} from "primeng/toast";
 import {McComponent} from "./pages/mc/mc.component";
 import {McService} from "./services/mc.service";
+import {PreloaderComponent} from "./pages/preloader/preloader.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/mc', pathMatch: 'full'},
@@ -38,7 +39,8 @@ const routes: Routes = [
     CrmComponent,
     McComponent,
     ScoutComponent,
-    UnitPickerComponent
+    UnitPickerComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,

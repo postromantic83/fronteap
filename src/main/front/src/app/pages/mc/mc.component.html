@@ -11,20 +11,33 @@
                               style="padding-left: 20px"
                               styleClass="ui-button-success"></p-button>
                 </div>
-                <table *ngIf="azsList" class="table table-bordered">
-                    <thead class="thead-light">
-                    <tr>
-                        <th scope="col-sm-4">id</th>
-                        <th scope="col-sm-4">Номер</th>
-                    </tr>
-                    </thead>
-                    <tbody *ngFor="let azs of azsList">
-                    <tr>
-                        <td>{{azs.id}}</td>
-                        <td>{{azs.number}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                <p-table (onRowSelect)="onRowSelect($event)"
+                         [(selection)]="selectedAzs" [paginator]="true"
+                         [responsive]="true"
+                         [rowsPerPageOptions]="[5,10,20,50]"
+                         [rows]="5"
+                         [value]="azsList"
+                         *ngIf="azsList"
+                         dataKey="id"
+                         selectionMode="single"
+                >
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th scope="col-sm">ID</th>
+                            <th scope="col-sm">Номер АЗС</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template let-azs let-rowIndex="ID" pTemplate="body">
+                        <tr [pSelectableRow]="dt">
+                            <td>{{azs.id}}</td>
+                            <td>{{azs.number}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+
+
             </p-tabPanel>
         </p-tabView>
     </p-panel>
